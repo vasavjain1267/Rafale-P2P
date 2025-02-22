@@ -1,18 +1,17 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from flask_socketio import SocketIO, emit
 import threading
 import socket
 
 app = Flask(__name__)
-CORS(app)  # Allow requests from the frontend
+CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
-# Global variables
 active_peers = {}
-received_messages = []  # List to store incoming messages
-socket_port = None  # This will be set at startup (socket server port)
+received_messages = []
+socket_port = None
 server_socket = None
-
-# --- Socket Functions ---
 
 def receive_messages():
     """Run in a background thread to listen for incoming connections."""
@@ -32,11 +31,12 @@ def receive_messages():
             else:
                 print(f"Received message from {peer_ip}:{peer_port} : {message}")
                 active_peers[(peer_ip, peer_port)] = "Connected"
-                # Save the incoming message along with sender info
-                received_messages.append({
+                new_message = {
                     "from": f"{peer_ip}:{peer_port}",
                     "message": message
-                })
+                }
+                received_messages.append(new_message)
+                socketio.emit('new_message', new_message)
             client_socket.close()
         except Exception as e:
             print(f"Error receiving message: {e}")
@@ -50,11 +50,9 @@ def send_message(target_ip, target_port, message):
             client_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
         except Exception:
             pass
-        # Bind outgoing socket to our fixed socket_port so that the sender’s port remains constant.
         client_socket.bind(('', socket_port))
         client_socket.connect((target_ip, target_port))
         client_socket.sendall(message.encode())
-        # For connection requests, wait for an acknowledgment.
         if message == "Connection Request":
             ack = client_socket.recv(1024).decode().strip()
             if ack == "Connection Acknowledged":
@@ -68,7 +66,9 @@ def send_message(target_ip, target_port, message):
         print(err_msg)
         return {"status": "error", "message": err_msg}
 
-# --- API Endpoints --- 
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/api/send', methods=['POST'])
 def api_send_message():
@@ -106,10 +106,16 @@ def api_disconnect():
 
 @app.route('/api/messages', methods=['GET'])
 def api_get_messages():
-    # Return all received messages.
     return jsonify(received_messages)
 
-# --- Start the Socket Server ---
+@socketio.on('connect')
+def handle_connect():
+    print('Client connected')
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Client disconnected')
+
 def start_socket_server(fixed_port):
     global socket_port, server_socket
     socket_port = fixed_port
@@ -125,14 +131,7 @@ def start_socket_server(fixed_port):
     threading.Thread(target=receive_messages, daemon=True).start()
 
 if __name__ == '__main__':
-    # Ask only for the socket server port (P2P messaging port).
-    # NOTE: Avoid using very low ports (like 2) since they are often reserved or in use.
     user_socket_port = int(input("Enter your socket server port (for P2P messaging): "))
-    api_port_needed = int(input("Enter flask api: "))
-    # Fixed API port for HTTP requests (adjust if 5050 is unavailable)
-    fixed_api_port = api_port_needed  
+    api_port_needed = int(input("Enter Flask API port: "))
     start_socket_server(user_socket_port)
-    
-    # If you get "Address already in use" here, it means port 5050 is taken.
-    # You can either free that port or change fixed_api_port to an available port.
-    app.run(host='0.0.0.0', port=fixed_api_port)
+    socketio.run(app, host='0.0.0.0', port=api_port_needed)
