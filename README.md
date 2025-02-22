@@ -1,86 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Peer-to-Peer Chat Application
 
-## Getting Started
+## Goal
+This project aims to develop a peer-to-peer (P2P) chat application that enables users to:
+- Send and receive messages simultaneously.
+- Support multiple peers.
+- Query and retrieve a list of peers they have communicated with.
 
-First, run the development server:
+## Team Members
+- **Vasav Jain** (230001081)
+- **Yash Vardhan Solanki** (230005052)
+- **Rudra Jadon** (230004043)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
+# SETUP GUIDE
+## 1. Backend Setup (Flask)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Virtual Environment Setup
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-
-# Virtual Environment Setup
-
-## Creating a Virtual Environment
+### Creating a Virtual Environment
 To create a virtual environment, follow these steps:
 
 1. Open a terminal and navigate to your project directory:
-   ```bash
+   
+bash
    cd /path/to/your/project
-   ```
 
-2. Create a virtual environment named `venv`:
-   ```bash
+
+2. Create a virtual environment named venv:
+   
+bash
    python3 -m venv venv
-   ```
+
 
 3. Activate the virtual environment:
    - **On macOS/Linux:**
-     ```bash
+     
+bash
      source venv/bin/activate
-     ```
+
    - **On Windows (Command Prompt):**
-     ```cmd
+     
+cmd
      venv\Scripts\activate
-     ```
+
    - **On Windows (PowerShell):**
-     ```powershell
+     
+powershell
      venv\Scripts\Activate
-     ```
 
-Once activated, your terminal prompt should show `(venv)`, indicating the virtual environment is active.
 
-## Installing Dependencies
+Once activated, your terminal prompt should show (venv), indicating the virtual environment is active.
+
+### Installing Dependencies
 To install the necessary dependencies, run:
-```bash
+bash
 pip install -r requirements.txt
-```
 
-## Running Your Application
+
+### Running Your Application
 After installing dependencies, you can run your application using:
-```bash
+bash
 python app.py
+
+
+### Deactivating the Virtual Environment
+To exit the virtual environment, simply run:
+bash
+deactivate
+
+---
+
+## 2. Frontend Setup (Next.js)
+
+#### Step 1: Install Dependencies
+Navigate to the frontend directory and run:
+```sh
+npm install
 ```
 
-## Deactivating the Virtual Environment
-To exit the virtual environment, simply run:
-```bash
-deactivate
+#### Step 2: Start the Next.js App
+```sh
+npm run dev
 ```
+The application will be available at: [http://localhost:3000/](http://localhost:3000/)
+
+---
+
+## Usage
+1. Start the backend server.
+2. Start the frontend application.
+3. Enter the required ports as prompted.
+4. Start chatting with peers in a decentralized manner! 🚀
+
+---
+
+## Technologies Used
+- **Backend:** Flask (Python)
+- **Frontend:** Next.js (React)
+- **Networking:** WebSockets for real-time messaging
+
+---
+
+## Contributing
+If you wish to contribute to this project, feel free to fork the repository, make your changes, and submit a pull request.
+
+---
+
+## License
+This project is licensed under the MIT License.
+
