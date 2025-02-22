@@ -46,12 +46,3 @@ To exit the virtual environment, simply run:
 ```bash
 deactivate
 ```
-
----
-
-# `requirements.txt`
-```
-flask
-flask-cors
-flask-socketio
-```
