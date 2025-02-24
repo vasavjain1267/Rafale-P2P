@@ -3,6 +3,11 @@ https://github.com/user-attachments/assets/68041aa5-5f4d-4068-a0c3-68a06835b434
 
 # Peer-to-Peer Chat Application
 
+## Team Members
+- **Vasav Jain** (230001081)
+- **Yash Vardhan Solanki** (230005052)
+- **Rudra Jadon** (230004043)
+
 
 ## Goal
 This project aims to develop a peer-to-peer (P2P) chat application that enables users to:
@@ -10,10 +15,7 @@ This project aims to develop a peer-to-peer (P2P) chat application that enables 
 - Support multiple peers.
 - Query and retrieve a list of peers they have communicated with.
 
-## Team Members
-- **Vasav Jain** (230001081)
-- **Yash Vardhan Solanki** (230005052)
-- **Rudra Jadon** (230004043)
+
 
 ---
 # SETUP GUIDE
