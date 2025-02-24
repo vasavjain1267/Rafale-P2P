@@ -1,6 +1,9 @@
-Uploading Screen Recording 2025-02-24 at 6.53.06 PM.mp4…
+
+https://github.com/user-attachments/assets/68041aa5-5f4d-4068-a0c3-68a06835b434
+Uploading Screen Recording 2025-02-24 at 6.53.06 PM.mov…
 
 # Peer-to-Peer Chat Application
+
 
 ## Goal
 This project aims to develop a peer-to-peer (P2P) chat application that enables users to:
