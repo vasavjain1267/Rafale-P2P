@@ -1,3 +1,5 @@
+Uploading Screen Recording 2025-02-24 at 6.53.06 PM.mp4…
+
 # Peer-to-Peer Chat Application
 
 ## Goal
@@ -23,30 +25,38 @@ To create a virtual environment, follow these steps:
 1. Open a terminal and navigate to your project directory:
    
 bash
+``` sh
    cd /path/to/your/project
-
+```
 
 2. Create a virtual environment named venv:
    
 bash
+``` sh
    python3 -m venv venv
-
+```
 
 3. Activate the virtual environment:
    - **On macOS/Linux:**
      
 bash
+``` sh
      source venv/bin/activate
+```
 
    - **On Windows (Command Prompt):**
      
 cmd
+``` sh
      venv\Scripts\activate
+```
 
    - **On Windows (PowerShell):**
      
 powershell
+``` sh
      venv\Scripts\Activate
+```
 
 
 Once activated, your terminal prompt should show (venv), indicating the virtual environment is active.
@@ -54,19 +64,24 @@ Once activated, your terminal prompt should show (venv), indicating the virtual 
 ### Installing Dependencies
 To install the necessary dependencies, run:
 bash
+``` sh
 pip install -r requirements.txt
+```
 
 
 ### Running Your Application
 After installing dependencies, you can run your application using:
 bash
+``` sh
 python app.py
-
+```
 
 ### Deactivating the Virtual Environment
 To exit the virtual environment, simply run:
 bash
+``` sh
 deactivate
+```
 
 ---
 
